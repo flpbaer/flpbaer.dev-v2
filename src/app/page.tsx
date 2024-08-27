@@ -14,7 +14,8 @@ import { TbBrandNextjs } from "react-icons/tb";
 import { RiGithubLine } from "react-icons/ri";
 import { SiNestjs } from "react-icons/si";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
-import { Tabs } from "@/components/ui/tabs";
+import Tabs, { Tab } from "@/components/ui/tabs";
+import Timeline from "@/components/ui/timeline";
 
 export default function Home() {
   const items = [
@@ -40,76 +41,44 @@ export default function Home() {
     },
   ];
 
-  const tabs = [
+  const timelineItems = [
     {
-      title: "About",
-      value: "about",
-      content: (
-        <div>
+      title: "Segala's Alimentos",
+      time: "2022 - Present",
+      description: (
+        <>
           <p>
-            I’m an enthusiastic individual passionate about creating exceptional
-            and impactful web experiences! Currently, I work as a Full Stack
-            Developer with a focus on front-end, dedicating myself to
-            transforming ideas into innovative and functional solutions. I’m
-            constantly seeking new opportunities to expand my knowledge and
-            skills while sharing what I’ve learned to help others achieve their
-            goals. I believe that the blend of creativity and technical
-            expertise is essential for crafting truly memorable digital
-            experiences.
+            A significant part of my early journey at Segalas involved learning
+            how to apply programming skills in real-world applications. I began
+            with foundational projects using JavaScript, HTML, and CSS. Over
+            time, I transitioned to React, where I built my stack and played a
+            key role in developing an ecommerce platform from the ground up,
+            which I continue to maintain today. At Segalas, I work as a
+            full-cycle developer, primarily focused on front-end development.
           </p>
           <br />
           <p>
-            In addition to my passion for programming, I have a deep curiosity
-            in learning new things. I am constantly exploring different topics,
-            always with the aim of expanding my knowledge in different aspects
-            of life. This thirst for knowledge goes beyond technology, as I
-            believe that a comprehensive understanding of the world enhances my
-            ability to create meaningful digital solutions. With the fact that I
-            am very communicative, which allows me to easily connect with other
-            people, whether collaborating on projects or simply sharing ideas
-            and experiences.
+            My work includes software development and the creation of
+            interactive interfaces, leveraging agile methodologies and modern
+            technologies. I specialize in front-end development using React with
+            TypeScript, Tailwind CSS, and Test-Driven Development (TDD).
+            Additionally, I incorporate UI/UX design principles using Figma and
+            ensure seamless deployment through CI/CD pipelines.
           </p>
-          <br />
-          <span>
-            {" "}
-            &quot;It&#39;s not what you do, but how you do it that defines the
-            impact you leave.&quot;
+            <br />
+          <span className="opacity-85">
+          <span className="font-bold">Technologies:</span> ReactJS, NodeJS, NestJS, TypeScript, NextJS, Tailwind
+            CSS
           </span>
           <br />
-          <br />
-        </div>
+          <span className="opacity-85"><span className="font-bold">Tools:</span> GitHub, Atlassian, AWS</span>
+        </>
       ),
     },
     {
-      title: "Career and Education",
-      value: "careerEducation",
-      content: (
-        <div className="border flex flex-col">
-          <div className="flex">
-            <div id="leftSide" className="border p-8 w-[30%]">
-              <h2 className="text-xl font-bold">Career</h2>
-              <ul className="list-disc pl-6">
-                <li>
-                  <strong>Full Stack Developer</strong> - Segalas Alimentos, Blumenau,
-                  Santa Catarina, Brazil (September 2021 - Present)
-                </li>
-                <li>
-                  <strong>Software Engineer</strong> - Elotech, Blumenau, Santa Catarina,
-                  Brazil (June 2021 - August 2021)
-                </li>
-                <li>
-                  <strong>Software Engineer</strong> - Everis, Blumenau, Santa Catarina,
-                  Brazil (March 2021 - June 2021)
-                </li>
-                <li>
-                  <strong>Frontend Developer</strong> - Everis, Blumenau
-                  </li>
-                  </ul>
-            </div>
-            <div id="rightSide" className="flex-1"></div>
-          </div>
-        </div>
-      ),
+      title: "Job 2",
+      time: "2020 - Present",
+      description: "Description of job 2",
     },
   ];
 
@@ -160,8 +129,51 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="min-h-[50vh] max-h-[60vh] max-w-[40vw] p-6 mask-gradient">
-          <Tabs tabs={tabs} />
+        <div className="min-h-[50vh] max-h-[60vh] overflow-y-auto min-w-[40vw] max-w-[40vw] p-6 mask-gradient">
+          <Tabs>
+            <Tab label="About">
+              <div>
+                <p>
+                  I’m an enthusiastic individual passionate about creating
+                  exceptional and impactful web experiences! Currently, I work
+                  as a Full Stack Developer with a focus on front-end,
+                  dedicating myself to transforming ideas into innovative and
+                  functional solutions. I’m constantly seeking new opportunities
+                  to expand my knowledge and skills while sharing what I’ve
+                  learned to help others achieve their goals. I believe that the
+                  blend of creativity and technical expertise is essential for
+                  crafting truly memorable digital experiences.
+                </p>
+                <br />
+                <p>
+                  In addition to my passion for programming, I have a deep
+                  curiosity in learning new things. I am constantly exploring
+                  different topics, always with the aim of expanding my
+                  knowledge in different aspects of life. This thirst for
+                  knowledge goes beyond technology, as I believe that a
+                  comprehensive understanding of the world enhances my ability
+                  to create meaningful digital solutions. With the fact that I
+                  am very communicative, which allows me to easily connect with
+                  other people, whether collaborating on projects or simply
+                  sharing ideas and experiences.
+                </p>
+                <br />
+                <span>
+                  {" "}
+                  &quot;It&#39;s not what you do, but how you do it that defines
+                  the impact you leave.&quot;
+                </span>
+                <br />
+                <br />
+              </div>
+            </Tab>
+            <Tab label="Career and Education">
+              {" "}
+              <div className="flex">
+                <Timeline items={timelineItems} />
+              </div>
+            </Tab>
+          </Tabs>
         </div>
         <InfiniteMovingCards
           items={items}
