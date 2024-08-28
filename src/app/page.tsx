@@ -9,78 +9,13 @@ import {
   MapPinHouse,
 } from "lucide-react";
 import { LinkPreview } from "@/components/ui/link-preview";
-import { FaReact, FaNodeJs } from "react-icons/fa";
-import { TbBrandNextjs } from "react-icons/tb";
-import { RiGithubLine } from "react-icons/ri";
-import { SiNestjs } from "react-icons/si";
+
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import Tabs, { Tab } from "@/components/ui/tabs";
 import Timeline from "@/components/ui/timeline";
+import { techItems, timelineItems } from "./info/info";
 
 export default function Home() {
-  const items = [
-    {
-      icon: <FaReact className="w-10 h-10" />,
-      name: "React.js",
-    },
-    {
-      icon: <TbBrandNextjs className="w-10 h-10" />,
-      name: "Next.js",
-    },
-    {
-      icon: <RiGithubLine className="w-10 h-10" />,
-      name: "Github",
-    },
-    {
-      icon: <SiNestjs className="w-10 h-10" />,
-      name: "Nest.js",
-    },
-    {
-      icon: <FaNodeJs className="w-10 h-10" />,
-      name: "Node.js",
-    },
-  ];
-
-  const timelineItems = [
-    {
-      title: "Segala's Alimentos",
-      time: "2022 - Present",
-      description: (
-        <>
-          <p>
-            A significant part of my early journey at Segalas involved learning
-            how to apply programming skills in real-world applications. I began
-            with foundational projects using JavaScript, HTML, and CSS. Over
-            time, I transitioned to React, where I built my stack and played a
-            key role in developing an ecommerce platform from the ground up,
-            which I continue to maintain today. At Segalas, I work as a
-            full-cycle developer, primarily focused on front-end development.
-          </p>
-          <br />
-          <p>
-            My work includes software development and the creation of
-            interactive interfaces, leveraging agile methodologies and modern
-            technologies. I specialize in front-end development using React with
-            TypeScript, Tailwind CSS, and Test-Driven Development (TDD).
-            Additionally, I incorporate UI/UX design principles using Figma and
-            ensure seamless deployment through CI/CD pipelines.
-          </p>
-            <br />
-          <span className="opacity-85">
-          <span className="font-bold">Technologies:</span> ReactJS, NodeJS, NestJS, TypeScript, NextJS, Tailwind
-            CSS
-          </span>
-          <br />
-          <span className="opacity-85"><span className="font-bold">Tools:</span> GitHub, Atlassian, AWS</span>
-        </>
-      ),
-    },
-    {
-      title: "Job 2",
-      time: "2020 - Present",
-      description: "Description of job 2",
-    },
-  ];
 
   return (
     <div className="w-screen h-screen">
@@ -168,7 +103,6 @@ export default function Home() {
               </div>
             </Tab>
             <Tab label="Career and Education">
-              {" "}
               <div className="flex">
                 <Timeline items={timelineItems} />
               </div>
@@ -176,7 +110,7 @@ export default function Home() {
           </Tabs>
         </div>
         <InfiniteMovingCards
-          items={items}
+          items={techItems}
           pauseOnHover={false}
           direction="right"
           speed="slow"
