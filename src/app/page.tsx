@@ -64,7 +64,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="min-h-[50vh] max-h-[60vh] overflow-y-auto min-w-[40vw] max-w-[40vw] p-6 mask-gradient">
+        <div className="h-[60vh] overflow-y-auto min-w-[40vw] max-w-[40vw] p-6 mask-gradient">
           <Tabs>
             <Tab label="About">
               <div>
