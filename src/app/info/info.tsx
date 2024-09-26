@@ -1,6 +1,7 @@
 export const timelineItems = [
   {
     title: "Segala's Alimentos",
+    role: "Full-Stack Developer",
     time: "2022 - Present",
     description: (
       <>
@@ -35,9 +36,24 @@ export const timelineItems = [
     ),
   },
   {
-    title: "Job 2",
-    time: "2020 - Present",
-    description: "Description of job 2",
+    title: "Fornos JUNG",
+    role: "Assistant IT",
+    time: "2020/09 - 2021/12",
+    description: (
+      <>
+        <p>
+          I worked as an IT assistant, focused only on taking courses, I didn’t
+          work directly at the company.
+        </p>
+        <br />
+        <p>
+          I delved deeper into web development and introduction to computer
+          networks courses. I learned the basics of HTML and CSS, I was
+          introduced to the world of networks using CISCO services, how
+          communication between servers works, I created connections, etc.
+        </p>
+      </>
+    ),
   },
 ];
 
@@ -50,27 +66,27 @@ import { SiNestjs, SiSpring, SiTypescript } from "react-icons/si";
 
 export const techItems = [
   {
-    icon: <FaReact className="w-10 h-10" />,
+    icon: <FaReact className="w-8 h-8" />,
     name: "React.js",
   },
   {
-    icon: <TbBrandNextjs className="w-10 h-10" />,
+    icon: <TbBrandNextjs className="w-8 h-8" />,
     name: "Next.js",
   },
   {
-    icon: <RiGithubLine className="w-10 h-10" />,
+    icon: <RiGithubLine className="w-8 h-8" />,
     name: "Github",
   },
   {
-    icon: <SiNestjs className="w-10 h-10" />,
+    icon: <SiNestjs className="w-8 h-8" />,
     name: "Nest.js",
   },
   {
-    icon: <FaNodeJs className="w-10 h-10" />,
+    icon: <FaNodeJs className="w-8 h-8" />,
     name: "Node.js",
   },
   {
-    icon: <FaAws className="w-10 h-10" />,
+    icon: <FaAws className="w-8 h-8" />,
     name: "AWS",
   },
   {
@@ -78,11 +94,11 @@ export const techItems = [
     name: "Java + Spring",
   },
   {
-    icon: <SiTypescript className="w-10 h-10" />,
+    icon: <SiTypescript className="w-8 h-8" />,
     name: "Typescript",
   },
   {
-    icon: <RiTailwindCssFill className="w-10 h-10" />,
+    icon: <RiTailwindCssFill className="w-8 h-8" />,
     name: "TailwindCSS",
   },
 ];

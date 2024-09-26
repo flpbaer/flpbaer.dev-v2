@@ -24,9 +24,10 @@ export const InfiniteMovingCards = ({
 
   useEffect(() => {
     addAnimation();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const [start, setStart] = useState(false);
+
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
@@ -43,61 +44,59 @@ export const InfiniteMovingCards = ({
       setStart(true);
     }
   }
+
   const getDirection = () => {
     if (containerRef.current) {
-      if (direction === "left") {
-        containerRef.current.style.setProperty(
-          "--animation-direction",
-          "forwards"
-        );
-      } else {
-        containerRef.current.style.setProperty(
-          "--animation-direction",
-          "reverse"
-        );
-      }
+      containerRef.current.style.setProperty(
+        "--animation-direction",
+        direction === "left" ? "forwards" : "reverse"
+      );
     }
   };
+
   const getSpeed = () => {
     if (containerRef.current) {
-      if (speed === "fast") {
-        containerRef.current.style.setProperty("--animation-duration", "20s");
-      } else if (speed === "normal") {
-        containerRef.current.style.setProperty("--animation-duration", "40s");
-      } else {
-        containerRef.current.style.setProperty("--animation-duration", "80s");
-      }
+      const duration =
+        speed === "fast" ? "20s" : speed === "normal" ? "40s" : "80s";
+      containerRef.current.style.setProperty("--animation-duration", duration);
     }
   };
+
   return (
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20  max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_30%,white_80%,transparent)]",
+        "scroller relative z-20 w-[90vw] overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_30%,white_80%,transparent)]",
         className
       )}
     >
       <ul
         ref={scrollerRef}
         className={cn(
-          " flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap",
-          start && "animate-scroll ",
+          "flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap overflow-hidden",
+          start && "animate-scroll",
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
+
       >
         {items.map((item, idx) => (
           <li
-            className="w-[350px] max-w-full relative rounded-md border px-2 py-4  border-b-0 flex-shrink-0 border-slate-900  md:w-[350px]"
+            className={cn(
+              "relative overflow-hidden rounded-md border border-b-0 flex-shrink-0 border-slate-900",
+              "md:py-4 py-2 sm:py-4 px-4 lg:w-[380px] sm:w-[420px]"
+            )}
             style={{
               background:
-                "linear-gradient(180deg, var(--slate-800), var(--slate-900)",
+                "linear-gradient(180deg, var(--slate-800), var(--slate-900))",
             }}
             key={item.name}
           >
             <blockquote>
-              <div className="flex justify-center items-center w-full h-full">
-                <div>{item.icon}</div>
-                <h1 className="font-bold ml-3 text-2xl">{item.name}</h1>
+              <div className="flex justify-center items-center w-full h-full overflow-hidden">
+                <h4>{item.icon}</h4>
+                <h1 className="font-bold ml-3 text-lg md:text-2xl">
+                  {item.name}
+                </h1>
               </div>
             </blockquote>
           </li>

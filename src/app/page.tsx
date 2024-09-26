@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 import blur from "@/assets/blur.svg";
 import personal from "@/assets/me.svg";
 import Image from "next/image";
@@ -9,42 +13,109 @@ import {
   MapPinHouse,
 } from "lucide-react";
 import { LinkPreview } from "@/components/ui/link-preview";
-
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import Tabs, { Tab } from "@/components/ui/tabs";
 import Timeline from "@/components/ui/timeline";
 import { techItems, timelineItems } from "./info/info";
 
 export default function Home() {
+  const titleRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const carrouselRef = useRef<HTMLDivElement>(null);
+  const blurRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    gsap.fromTo(
+      titleRef.current,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 2,
+        ease: "power2.inOut",
+        onStart: () => {
+          titleRef.current?.classList.remove("hidden-before-animation");
+        },
+      }
+    );
+
+    gsap.fromTo(
+      aboutRef.current,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 2,
+        ease: "power2.inOut",
+        delay: 0.5,
+        onStart: () => {
+          aboutRef.current?.classList.remove("hidden-before-animation");
+        },
+      }
+    );
+
+    gsap.fromTo(
+      carrouselRef.current,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 2,
+        ease: "power2.inOut",
+        delay: 0.8,
+        onStart: () => {
+          carrouselRef.current?.classList.remove("hidden-before-animation");
+        },
+      }
+    );
+
+    gsap.fromTo(
+      blurRef.current,
+      {
+        opacity: 0.2,
+        filter: "brightness(0.5)",
+        onStart: () => {
+          blurRef.current?.classList.remove("hidden-before-animation");
+        },
+      },
+      {
+        opacity: 1,
+        filter: "brightness(1)",
+        duration: 3,
+        ease: "power2.inOut",
+      }
+    );
+  }, []);
 
   return (
-    <div className="w-screen h-screen">
-      <div className="absolute top-0 w-full h-full select-none pointer-events-none">
+    <div className="w-[99vw] h-screen">
+      <div
+        className="absolute top-0 w-full h-full select-none pointer-events-none hidden-before-animation"
+        ref={blurRef}
+      >
         <Image src={blur} alt="blur" className="h-3/4 w-full" />
       </div>
       <div className="w-full h-full flex flex-col items-center p-6">
-        <div className="min-w-[40vw] p-4 flex items-start justify-between">
-          <div className="flex items-center w-full justify-between">
-            <div className="flex">
-              <div className="ml-4">
-                <h1 className="text-4xl font-bold">Felipe Bäer</h1>
-                <p className="">Software Developer</p>
-                <div className="mt-4 text-gray-300 flex items-center">
-                  <BriefcaseBusiness className="w-5 h-5 mr-2" />{" "}
-                  <span>
-                    Work at{" "}
-                    <LinkPreview url="https://www.segalas.com.br">
-                      Segalas Alimentos
-                    </LinkPreview>
-                  </span>
-                </div>
-                <div className="mt-2 text-gray-300 flex items-center">
-                  <MapPinHouse className="w-5 h-5 mr-2" />{" "}
-                  <span>Blumenau, Santa Catarina</span>
-                </div>
+        <div className="w-full max-w-[99vw] md:max-w-[80vw] lg:max-w-[40vw] p-4 flex flex-col items-start justify-between">
+          <div
+            className="flex items-center justify-between w-full hidden-before-animation"
+            ref={titleRef}
+          >
+            <div className="flex flex-col">
+              <h1 className="text-3xl md:text-4xl font-bold">Felipe Bäer</h1>
+              <p className="">Software Developer</p>
+              <div className="mt-4 text-gray-300 flex items-center">
+                <BriefcaseBusiness className="w-5 h-5 mr-2" />
+                <span>
+                  Work at{" "}
+                  <LinkPreview url="https://www.segalas.com.br">
+                    Segalas Alimentos
+                  </LinkPreview>
+                </span>
+              </div>
+              <div className="mt-2 text-gray-300 flex items-center">
+                <MapPinHouse className="w-5 h-5 mr-2" />
+                <span>Blumenau, Santa Catarina</span>
               </div>
             </div>
-            <div className="flex items-center h-full">
+            <div className="flex items-center mt-4 md:mt-0 h-full">
               <div className="flex flex-col gap-2 mr-4">
                 <button className="bg-slate-900 border-gray-500 border p-2 rounded-lg hover:-backdrop-hue-rotate-180">
                   <Github />
@@ -59,12 +130,15 @@ export default function Home() {
               <Image
                 src={personal}
                 alt="personalImage"
-                className="w-44 z-10 rounded-md"
+                className="w-32 hidden md:w-44 z-10 rounded-md lg:block"
               />
             </div>
           </div>
         </div>
-        <div className="h-[60vh] overflow-y-auto min-w-[40vw] max-w-[40vw] p-6 mask-gradient">
+        <div
+          className="h-[60vh] overflow-y-auto w-full max-w-[90vw] md:max-w-[60vw] lg:max-w-[40vw] p-6 mask-gradient hidden-before-animation"
+          ref={aboutRef}
+        >
           <Tabs>
             <Tab label="About">
               <div>
@@ -109,12 +183,18 @@ export default function Home() {
             </Tab>
           </Tabs>
         </div>
-        <InfiniteMovingCards
-          items={techItems}
-          pauseOnHover={false}
-          direction="right"
-          speed="slow"
-        />
+
+        <div
+          ref={carrouselRef}
+          className="hidden-before-animation overflow-hidden"
+        >
+          <InfiniteMovingCards
+            items={techItems}
+            pauseOnHover={false}
+            direction="right"
+            speed="slow"
+          />
+        </div>
       </div>
     </div>
   );
