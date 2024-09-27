@@ -1,21 +1,28 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
 import blur from "@/assets/blur.svg";
 import personal from "@/assets/me.svg";
-import Image from "next/image";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { LinkPreview } from "@/components/ui/link-preview";
+import gsap from "gsap";
 import {
   BriefcaseBusiness,
+  FileOutput,
   Github,
   Linkedin,
   Mail,
   MapPinHouse,
 } from "lucide-react";
-import { LinkPreview } from "@/components/ui/link-preview";
-import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
 import Tabs, { Tab } from "@/components/ui/tabs";
 import Timeline from "@/components/ui/timeline";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { techItems, timelineItems } from "./info/info";
 
 export default function Home() {
@@ -93,13 +100,31 @@ export default function Home() {
         <Image src={blur} alt="blur" className="h-3/4 w-full" />
       </div>
       <div className="w-full h-full flex flex-col items-center p-6">
-        <div className="w-full max-w-[99vw] md:max-w-[80vw] lg:max-w-[40vw] p-4 flex flex-col items-start justify-between">
+        <div className="w-full max-w-[99vw] md:max-w-[90vw] lg:max-w-[40vw] p-4 flex flex-col items-start justify-between">
           <div
             className="flex items-center justify-between w-full hidden-before-animation"
             ref={titleRef}
           >
             <div className="flex flex-col">
-              <h1 className="text-3xl md:text-4xl font-bold">Felipe Bäer</h1>
+              <div className="flex items-center gap-2">
+                <h1 className="text-3xl md:text-4xl font-bold">Felipe Bäer</h1>{" "}
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <FileOutput
+                        onClick={() =>
+                          window.open("/files/Curriculum-Felipe Baer.pdf")
+                        }
+                        size={18}
+                        className="text-sky-700 cursor-pointer"
+                      />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <span>Download CV</span>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
               <p className="">Software Developer</p>
               <div className="mt-4 text-gray-300 flex items-center">
                 <BriefcaseBusiness className="w-5 h-5 mr-2" />
@@ -117,13 +142,28 @@ export default function Home() {
             </div>
             <div className="flex items-center mt-4 md:mt-0 h-full">
               <div className="flex flex-col gap-2 mr-4">
-                <button className="bg-slate-900 border-gray-500 border p-2 rounded-lg hover:-backdrop-hue-rotate-180">
+                <button
+                  className="bg-slate-900 border-gray-500 border p-2 rounded-lg hover:-backdrop-hue-rotate-180"
+                  onClick={() => window.open("https://github.com/flpbaer")}
+                >
                   <Github />
                 </button>
-                <button className="bg-slate-900 border-gray-500 border p-2 rounded-lg hover:-backdrop-hue-rotate-180">
+                <button
+                  className="bg-slate-900 border-gray-500 border p-2 rounded-lg hover:-backdrop-hue-rotate-180"
+                  onClick={() =>
+                    window.open("https://www.linkedin.com/in/flpbaer/")
+                  }
+                >
                   <Linkedin />
                 </button>
-                <button className="bg-slate-900 border-gray-500 border p-2 rounded-lg hover:-backdrop-hue-rotate-180">
+                <button
+                  className="bg-slate-900 border-gray-500 border p-2 rounded-lg hover:-backdrop-hue-rotate-180"
+                  onClick={() =>
+                    window.open(
+                      "mailto:flpbaer@gmail.com?subject=I'm interested&body=Hi Felipe"
+                    )
+                  }
+                >
                   <Mail />
                 </button>
               </div>
